@@ -47,3 +47,33 @@ FROM clean.match_no_lookup ml
 WHERE cm.game_id = ml.game_id AND cm.club_id = ml.club_id;
 
 DROP TABLE clean.match_no_lookup;
+
+-- Rolling PPG windows: prior 10 matches and next 10 matches, per club per season.
+-- NULL near season boundaries is expected (e.g. match_no 1 has no prior matches).
+-- These are the inputs Phase 4's slump/matching definitions will run on.
+
+ALTER TABLE clean.club_matches ADD COLUMN ppg_prior_10 NUMERIC;
+ALTER TABLE clean.club_matches ADD COLUMN ppg_next_10 NUMERIC;
+
+CREATE TABLE clean.ppg_lookup AS
+SELECT
+    game_id, club_id,
+    AVG(points) OVER (
+        PARTITION BY club_id, season
+        ORDER BY match_no
+        ROWS BETWEEN 10 PRECEDING AND 1 PRECEDING
+    ) AS prior_10,
+    AVG(points) OVER (
+        PARTITION BY club_id, season
+        ORDER BY match_no
+        ROWS BETWEEN 1 FOLLOWING AND 10 FOLLOWING
+    ) AS next_10
+FROM clean.club_matches;
+
+UPDATE clean.club_matches cm
+SET ppg_prior_10 = pl.prior_10,
+    ppg_next_10 = pl.next_10
+FROM clean.ppg_lookup pl
+WHERE cm.game_id = pl.game_id AND cm.club_id = pl.club_id;
+
+DROP TABLE clean.ppg_lookup;
