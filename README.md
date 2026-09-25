@@ -59,10 +59,17 @@ that fades by the 10-game mark — though the 5-match PPG scale is
 coarser and likely overstates matching precision. Full detail in
 `sql/06_robustness.sql`.
 
-The event-study chart below shows the actual match-by-match shape:
-sacked clubs dip *below* the control group for the first several
-matches after the change before pulling ahead later — not an
-immediate bounce.
+The event-study chart below shows the actual match-by-match shape.
+Sacked clubs bottom out right before the change (PPG 0.17 at match −1,
+the lowest point either group reaches) and jump sharply at match 0 —
+but so does the control group, and by roughly similar magnitude
+(sacked: +0.57 PPG from pre- to post-change average; kept: +0.55). The
+sacked line sits above the kept line in most of the first several
+matches after the change, which is exactly what the "misleading"
++0.64 headline number picks up. The two lines converge once both
+groups' averages are considered over the full ±10-match window — the
+apparent bounce is mostly clubs recovering from their worst point,
+not a new-manager effect.
 
 ![Event study chart](doc-images/event_study.png)
 
