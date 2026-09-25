@@ -73,13 +73,25 @@ not a new-manager effect.
 
 ![Event study chart](doc-images/event_study.png)
 
+## Full writeup
+
+This result was also written up as a 6-slide carousel — full argument,
+one step at a time, from the misleading +0.64 headline number to the
+regression-to-the-mean explanation above.
+
+[![Carousel preview](doc-images/slide_1.png)](deck/Manager_Sackings_Carousel.pdf)
+
+**[Open the full carousel (PDF)](deck/Manager_Sackings_Carousel.pdf)** ·
+individual slides in [`doc-images/`](doc-images/) (`slide_1.png`–`slide_6.png`)
+
 ## Repo structure
 
 - `sql/` — build scripts, one per phase, run in order
 - `data/` — exported intermediate datasets (raw CSVs excluded via
   `.gitignore`)
-- `deck/` — Power BI file
-- `doc-images/` — exported chart images
+- `deck/` — Power BI source file (`event_study.pbix`) and the final
+  carousel PDF (`Manager_Sackings_Carousel.pdf`)
+- `doc-images/` — exported chart image and individual carousel slides
 - `phase1_notes.md`, `phase4_definitions.md` — data-quality notes and
   the locked analysis definitions, written before results were computed
 
