@@ -77,12 +77,15 @@ not a new-manager effect.
 
 This result was also written up as a 6-slide carousel — full argument,
 one step at a time, from the misleading +0.64 headline number to the
-regression-to-the-mean explanation above.
+regression-to-the-mean explanation above. Also available as a
+[PDF](deck/Manager_Sackings_Carousel.pdf).
 
-[![Carousel preview](doc-images/slide_1.png)](deck/Manager_Sackings_Carousel.pdf)
-
-**[Open the full carousel (PDF)](deck/Manager_Sackings_Carousel.pdf)** ·
-individual slides in [`doc-images/`](doc-images/) (`slide_1.png`–`slide_6.png`)
+![Slide 1](doc-images/slide_1.png)
+![Slide 2](doc-images/slide_2.png)
+![Slide 3](doc-images/slide_3.png)
+![Slide 4](doc-images/slide_4.png)
+![Slide 5](doc-images/slide_5.png)
+![Slide 6](doc-images/slide_6.png)
 
 ## Repo structure
 
