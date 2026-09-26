@@ -1,2 +1,2 @@
-data/raw/*.csv
+02_data/raw/*.csv
 .ipynb_checkpoints/
