@@ -5,6 +5,8 @@ whether mid-season managerial changes produce a real performance
 improvement — or whether the "new manager bounce" is mostly regression
 to the mean.
 
+![Slide 1](07_executive_brief/slides/slide_1.png)
+
 ## Business problem
 
 When a team underperforms, replacing its leader is the default response —
@@ -21,6 +23,8 @@ measurable before/after outcome (points per game), and — critically — a
 large enough pool of comparable teams that did *not* change managers to
 build a genuine control group. Full framing in
 [`01_business_problem/problem_statement.md`](01_business_problem/problem_statement.md).
+
+![Slide 2](07_executive_brief/slides/slide_2.png)
 
 ## The question
 
@@ -58,17 +62,23 @@ clubs that were in an equally bad slump but kept their manager.
 
 ## Result
 
+![Slide 3](07_executive_brief/slides/slide_3.png)
+
 | | PPG change (next 10 − prior 10) |
 |---|---|
 | Manager sacked | +0.643 |
 | Manager kept | +0.526 |
 | **Gap attributable to sacking** | **+0.117** (p = 0.061, not significant) |
 
+![Slide 4](07_executive_brief/slides/slide_4.png)
+
 Both groups recovered substantially on their own — most of the "bounce"
 fans attribute to a new manager happens regardless of whether the
 manager actually changes. The sacking adds a further ~0.12 points per
 game on top of that, but this could plausibly be chance at this sample
 size (108 matched pairs).
+
+![Slide 5](07_executive_brief/slides/slide_5.png)
 
 **Robustness check:** using a shorter 5-match window instead of 10, the
 gap widens to +0.225 and becomes statistically significant (p = 0.005).
@@ -77,34 +87,19 @@ that fades by the 10-game mark — though the 5-match PPG scale is
 coarser and likely overstates matching precision. Full detail in
 [`03_sql/06_robustness.sql`](03_sql/06_robustness.sql).
 
-The event-study chart below shows the actual match-by-match shape.
-Sacked clubs bottom out right before the change (PPG 0.17 at match −1,
-the lowest point either group reaches) and jump sharply at match 0 —
-but so does the control group, and by roughly similar magnitude
-(sacked: +0.57 PPG from pre- to post-change average; kept: +0.55). The
-sacked line sits above the kept line in most of the first several
-matches after the change, which is exactly what the "misleading"
-+0.64 headline number picks up. The two lines converge once both
-groups' averages are considered over the full ±10-match window — the
-apparent bounce is mostly clubs recovering from their worst point,
-not a new-manager effect.
+The chart below shows the actual match-by-match shape. Sacked clubs
+bottom out right before the change (PPG 0.17 at match −1, the lowest
+point either group reaches) and jump sharply at match 0 — but so does
+the control group, and by roughly similar magnitude (sacked: +0.57 PPG
+from pre- to post-change average; kept: +0.55). The sacked line sits
+above the kept line in most of the first several matches after the
+change, which is exactly what the "misleading" +0.64 headline number
+picks up. The two lines converge once both groups' averages are
+considered over the full ±10-match window — the apparent bounce is
+mostly clubs recovering from their worst point, not a new-manager
+effect.
 
-![Event study chart](07_executive_brief/slides/event_study.png)
-
-## Full writeup
-
-This result was also written up as a 7-slide carousel — full argument,
-one step at a time, from the business problem to the misleading +0.64
-headline number to the regression-to-the-mean explanation above. Also
-available as a [PDF](07_executive_brief/Manager_Sackings_Carousel.pdf).
-
-![Slide 1](07_executive_brief/slides/slide_1.png)
-![Slide 2](07_executive_brief/slides/slide_2.png)
-![Slide 3](07_executive_brief/slides/slide_3.png)
-![Slide 4](07_executive_brief/slides/slide_4.png)
-![Slide 5](07_executive_brief/slides/slide_5.png)
 ![Slide 6](07_executive_brief/slides/slide_6.png)
-![Slide 7](07_executive_brief/slides/slide_7.png)
 
 ## Repo structure
 
@@ -130,3 +125,10 @@ available as a [PDF](07_executive_brief/Manager_Sackings_Carousel.pdf).
   quality, injuries, and fixture difficulty aren't controlled for.
 - Bundesliga only — findings may not generalize to leagues with
   different managerial-change norms.
+
+---
+
+![Slide 7](07_executive_brief/slides/slide_7.png)
+
+Full carousel also available as a
+[PDF](07_executive_brief/Manager_Sackings_Carousel.pdf).
