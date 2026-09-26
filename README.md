@@ -5,6 +5,23 @@ whether mid-season managerial changes produce a real performance
 improvement — or whether the "new manager bounce" is mostly regression
 to the mean.
 
+## Business problem
+
+When a team underperforms, replacing its leader is the default response —
+in football, sacking the manager; in an organization, replacing a
+struggling department head or team lead. But teams in a slump also tend
+to recover on their own, given time. Without a matched comparison, a
+recovery that would have happened anyway gets misattributed to the
+leadership change.
+
+This project tests that attribution problem directly, using real match
+data as a clean, decision-relevant proxy: a managerial sacking is a
+leadership-change decision made under real time pressure, with a
+measurable before/after outcome (points per game), and — critically — a
+large enough pool of comparable teams that did *not* change managers to
+build a genuine control group. Full framing in
+[`01_business_problem/problem_statement.md`](01_business_problem/problem_statement.md).
+
 ## The question
 
 Fan and media narratives treat a managerial sacking as an obvious fix
@@ -31,7 +48,8 @@ clubs that were in an equally bad slump but kept their manager.
    matchdays as likely end-of-season bench handoffs rather than real
    sackings.
 3. Defined a "slump" as PPG ≤ 1.0 over the prior 10 matches — locked
-   before computing any outcome (see `phase4_definitions.md`).
+   before computing any outcome (see
+   [`01_business_problem/definitions.md`](01_business_problem/definitions.md)).
 4. Matched each real slump-sacking (108 events) to the closest
    comparable club-season that stayed in a slump but did not change
    manager, on PPG and league position.
@@ -57,7 +75,7 @@ gap widens to +0.225 and becomes statistically significant (p = 0.005).
 This suggests any real effect may be front-loaded — a short-term jolt
 that fades by the 10-game mark — though the 5-match PPG scale is
 coarser and likely overstates matching precision. Full detail in
-`sql/06_robustness.sql`.
+[`03_sql/06_robustness.sql`](03_sql/06_robustness.sql).
 
 The event-study chart below shows the actual match-by-match shape.
 Sacked clubs bottom out right before the change (PPG 0.17 at match −1,
@@ -71,32 +89,36 @@ groups' averages are considered over the full ±10-match window — the
 apparent bounce is mostly clubs recovering from their worst point,
 not a new-manager effect.
 
-![Event study chart](doc-images/event_study.png)
+![Event study chart](07_executive_brief/slides/event_study.png)
 
 ## Full writeup
 
 This result was also written up as a 6-slide carousel — full argument,
 one step at a time, from the misleading +0.64 headline number to the
 regression-to-the-mean explanation above. Also available as a
-[PDF](deck/Manager_Sackings_Carousel.pdf).
+[PDF](07_executive_brief/Manager_Sackings_Carousel.pdf).
 
-![Slide 1](doc-images/slide_1.png)
-![Slide 2](doc-images/slide_2.png)
-![Slide 3](doc-images/slide_3.png)
-![Slide 4](doc-images/slide_4.png)
-![Slide 5](doc-images/slide_5.png)
-![Slide 6](doc-images/slide_6.png)
+![Slide 1](07_executive_brief/slides/slide_1.png)
+![Slide 2](07_executive_brief/slides/slide_2.png)
+![Slide 3](07_executive_brief/slides/slide_3.png)
+![Slide 4](07_executive_brief/slides/slide_4.png)
+![Slide 5](07_executive_brief/slides/slide_5.png)
+![Slide 6](07_executive_brief/slides/slide_6.png)
 
 ## Repo structure
 
-- `sql/` — build scripts, one per phase, run in order
-- `data/` — exported intermediate datasets (raw CSVs excluded via
-  `.gitignore`)
-- `deck/` — Power BI source file (`event_study.pbix`) and the final
-  carousel PDF (`Manager_Sackings_Carousel.pdf`)
-- `doc-images/` — exported chart image and individual carousel slides
-- `phase1_notes.md`, `phase4_definitions.md` — data-quality notes and
-  the locked analysis definitions, written before results were computed
+- `01_business_problem/` — the business framing and the locked analysis
+  definitions, written before results were computed
+- `02_data/` — data-quality notes and exported intermediate datasets
+  (raw CSVs excluded via `.gitignore`)
+- `03_sql/` — build scripts, one per phase, run in order
+- `04_analysis/` — notebooks used to independently verify the SQL
+  results in Python
+- `05_powerbi/` — Power BI source file for the event-study chart
+- `06_ai/` — how AI was used in this project, including the two real
+  errors caught during the verification pass
+- `07_executive_brief/` — the LinkedIn carousel deck (PDF + individual
+  slide images)
 
 ## Limitations
 
