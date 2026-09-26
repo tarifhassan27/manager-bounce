@@ -93,10 +93,10 @@ not a new-manager effect.
 
 ## Full writeup
 
-This result was also written up as a 6-slide carousel — full argument,
-one step at a time, from the misleading +0.64 headline number to the
-regression-to-the-mean explanation above. Also available as a
-[PDF](07_executive_brief/Manager_Sackings_Carousel.pdf).
+This result was also written up as a 7-slide carousel — full argument,
+one step at a time, from the business problem to the misleading +0.64
+headline number to the regression-to-the-mean explanation above. Also
+available as a [PDF](07_executive_brief/Manager_Sackings_Carousel.pdf).
 
 ![Slide 1](07_executive_brief/slides/slide_1.png)
 ![Slide 2](07_executive_brief/slides/slide_2.png)
@@ -104,6 +104,7 @@ regression-to-the-mean explanation above. Also available as a
 ![Slide 4](07_executive_brief/slides/slide_4.png)
 ![Slide 5](07_executive_brief/slides/slide_5.png)
 ![Slide 6](07_executive_brief/slides/slide_6.png)
+![Slide 7](07_executive_brief/slides/slide_7.png)
 
 ## Repo structure
 
