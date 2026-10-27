@@ -142,4 +142,4 @@ manager: +0.12 PPG over 10 matches (p = 0.06) and +0.23 over 5
 ![Slide 7](06_executive_brief/slides/slide_7.png)
 
 Full carousel also available as a
-[PDF](06_executive_brief/Manager_Sackings_Carousel.pdf).
+[PDF](06_executive_brief/Manager_Change_Carousel.pdf).
