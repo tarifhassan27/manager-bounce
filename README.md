@@ -102,10 +102,10 @@ but so does the control group, and by roughly similar magnitude
 (changed: +0.57 PPG from pre- to post-change average; kept: +0.55). The
 changed line sits above the kept line in most of the first several
 matches after the change, which is exactly what the "misleading" +0.64
-headline number picks up. The two lines converge once both groups'
-averages are considered over the full ±10-match window — the apparent
-bounce is mostly clubs recovering from their worst point, not a
-new-manager effect.
+headline number picks up. Most of the rebound is clubs recovering from
+their worst point. A smaller extra lift remains for clubs that changed
+manager: +0.12 PPG over 10 matches (p = 0.06) and +0.23 over 5
+(p = 0.005). A short, early new-manager effect can't be ruled out.
 
 ![Slide 6](06_executive_brief/slides/slide_6.png)
 
