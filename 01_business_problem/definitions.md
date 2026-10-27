@@ -26,3 +26,7 @@ explains the "bounce").
 H1: sacking the manager produces a significantly larger improvement.
 
 Locked: 2026-09-24. Not to be edited after Phase 5 begins.
+
+---
+
+Erratum (Oct 2026): 'sacking' here should read 'manager change'. See the README limitations.
