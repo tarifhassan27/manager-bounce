@@ -1,4 +1,4 @@
-# Does Sacking the Manager Actually Work?
+# Does Changing the Manager Mid-Slump Actually Work?
 
 A data analysis of 14 seasons of Bundesliga results (2012–2025), testing
 whether mid-season managerial changes produce a real performance
@@ -10,14 +10,14 @@ to the mean.
 ## Business problem
 
 When a team underperforms, replacing its leader is the default response —
-in football, sacking the manager; in an organization, replacing a
+in football, changing the manager; in an organization, replacing a
 struggling department head or team lead. But teams in a slump also tend
 to recover on their own, given time. Without a matched comparison, a
 recovery that would have happened anyway gets misattributed to the
 leadership change.
 
 This project tests that attribution problem directly, using real match
-data as a clean, decision-relevant proxy: a managerial sacking is a
+data as a clean, decision-relevant proxy: a mid-slump manager change is a
 leadership-change decision made under real time pressure, with a
 measurable before/after outcome (points per game), and — critically — a
 large enough pool of comparable teams that did *not* change managers to
@@ -28,11 +28,19 @@ build a genuine control group. Full framing in
 
 ## The question
 
-Fan and media narratives treat a managerial sacking as an obvious fix
+Fan and media narratives treat a change of manager as an obvious fix
 for a struggling team. But teams in a slump tend to recover somewhat on
-their own, sacking or no sacking. This project isolates the effect of
-the sacking itself by comparing sacked clubs to a matched group of
-clubs that were in an equally bad slump but kept their manager.
+their own, whether the manager changes or not. This project isolates the
+effect of the change itself by comparing clubs that changed manager to a
+matched group of clubs that were in an equally bad slump but kept their
+manager.
+
+**What "manager change" means here:** the data detects when the manager
+name changes between consecutive matches. That captures dismissals, but
+also resignations, mutual-consent exits, managers leaving for another
+club, and caretaker handovers. The dataset has no reason-for-change
+field, so these can't be separated. Given that every change analysed
+happened during a slump, most are likely dismissals — but not all.
 
 ## Data
 
@@ -49,14 +57,14 @@ clubs that were in an equally bad slump but kept their manager.
    rolling points-per-game (PPG) over the prior 10 and next 10 matches.
 2. Detected 154 in-season managerial changes via manager-name changes
    between consecutive matches; excluded 5 changes on the final 1–2
-   matchdays as likely end-of-season bench handoffs rather than real
-   sackings.
+   matchdays as likely end-of-season bench handoffs rather than genuine
+   mid-season changes.
 3. Defined a "slump" as PPG ≤ 1.0 over the prior 10 matches — locked
    before computing any outcome (see
    [`01_business_problem/definitions.md`](01_business_problem/definitions.md)).
-4. Matched each real slump-sacking (108 events) to the closest
-   comparable club-season that stayed in a slump but did not change
-   manager, on PPG and league position.
+4. Matched each manager change made during a slump (108 events) to the
+   closest comparable club-season that stayed in a slump but did not
+   change manager, on PPG and league position.
 5. Compared PPG change (next 10 − prior 10) between the two groups,
    using a paired t-test and a difference-in-differences regression.
 
@@ -66,15 +74,15 @@ clubs that were in an equally bad slump but kept their manager.
 
 | | PPG change (next 10 − prior 10) |
 |---|---|
-| Manager sacked | +0.643 |
+| Manager changed | +0.643 |
 | Manager kept | +0.526 |
-| **Gap attributable to sacking** | **+0.117** (p = 0.061, not significant) |
+| **Gap linked to the change** | **+0.117** (p = 0.061, not significant) |
 
 ![Slide 4](06_executive_brief/slides/slide_4.png)
 
 Both groups recovered substantially on their own — most of the "bounce"
 fans attribute to a new manager happens regardless of whether the
-manager actually changes. The sacking adds a further ~0.12 points per
+manager actually changes. The change adds a further ~0.12 points per
 game on top of that, but this could plausibly be chance at this sample
 size (108 matched pairs).
 
@@ -87,17 +95,17 @@ that fades by the 10-game mark — though the 5-match PPG scale is
 coarser and likely overstates matching precision. Full detail in
 [`03_sql/06_robustness.sql`](03_sql/06_robustness.sql).
 
-The chart below shows the actual match-by-match shape. Sacked clubs
-bottom out right before the change (PPG 0.17 at match −1, the lowest
-point either group reaches) and jump sharply at match 0 — but so does
-the control group, and by roughly similar magnitude (sacked: +0.57 PPG
-from pre- to post-change average; kept: +0.55). The sacked line sits
-above the kept line in most of the first several matches after the
-change, which is exactly what the "misleading" +0.64 headline number
-picks up. The two lines converge once both groups' averages are
-considered over the full ±10-match window — the apparent bounce is
-mostly clubs recovering from their worst point, not a new-manager
-effect.
+The chart below shows the actual match-by-match shape. Clubs that
+changed manager bottom out right before the change (PPG 0.17 at match
+−1, the lowest point either group reaches) and jump sharply at match 0 —
+but so does the control group, and by roughly similar magnitude
+(changed: +0.57 PPG from pre- to post-change average; kept: +0.55). The
+changed line sits above the kept line in most of the first several
+matches after the change, which is exactly what the "misleading" +0.64
+headline number picks up. The two lines converge once both groups'
+averages are considered over the full ±10-match window — the apparent
+bounce is mostly clubs recovering from their worst point, not a
+new-manager effect.
 
 ![Slide 6](06_executive_brief/slides/slide_6.png)
 
@@ -116,6 +124,11 @@ effect.
 
 ## Limitations
 
+- The data detects manager changes, not dismissals. Resignations,
+  mutual-consent exits, departures to another club, and caretaker
+  handovers are included alongside sackings and can't be separated
+  without a reason-for-change field. Results describe the effect of a
+  mid-slump manager change, not of a sacking specifically.
 - Matching is with replacement (a control event could be reused across
   multiple treated cases); with 1,963 control candidates vs. 108
   treated events, this risk is low but not zero.
